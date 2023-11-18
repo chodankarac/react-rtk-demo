@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
 const initialState = {
   loading: false,
@@ -9,7 +10,7 @@ const initialState = {
 
 //Generates pending,fulfilled and rejected action types
 export const fetchUsers = createAsyncThunk("user/fetchUsers", () => {
-  return get("https://jsonplaceholder.typicode.com/users").then((response) => response.data.map((user) => user.id));
+  return axios.get("https://jsonplaceholder.typicode.com/users").then((response) => response.data);
 });
 const userSlice = createSlice({
   name: "user",
