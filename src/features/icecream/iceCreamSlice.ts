@@ -1,7 +1,10 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ordered as cakeOrdered } from "../cake/cakeSlice";
 
-const initialState = {
+type initialState = {
+  numOfIcecreams: number;
+};
+const initialState: initialState = {
   numOfIcecreams: 20,
 };
 
@@ -12,7 +15,7 @@ const iceCreamSlice = createSlice({
     ordered: (state) => {
       state.numOfIcecreams--;
     },
-    restockedIceCream: (state, action) => {
+    restockedIceCream: (state, action: PayloadAction<number>) => {
       state.numOfIcecreams += action.payload;
     },
   },
